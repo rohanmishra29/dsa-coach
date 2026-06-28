@@ -1,100 +1,101 @@
-# ⚡ DSA Coach — AI Interview Simulator
+# DSA Interview Coach
 
-**Live App:** https://dsa-coach-ebon.vercel.app
+## Problem and Domain
 
-An AI-powered mock interview platform that simulates a real FAANG-style DSA (Data Structures & Algorithms) interview. Practice problem-solving out loud, get Socratic hints instead of full answers, submit code for review, and receive a scored debrief at the end — just like a real technical interview.
+Most coding interview practice happens in isolation. Platforms check whether code passes test cases, but real interviews are conversational: you explain your approach out loud, defend your complexity choices, and respond to follow-up pressure from an interviewer. There is no easy way to practice that part of the interview alone.
 
-Built for **HACKHAZARDS '26** (AI/ML Track) by Rohan Kumar Mishra.
+Themes Selected: Learning & Knowledge Systems, Human Experience & Productivity
 
----
+## Objective
 
-## 🎯 The Problem
+Target users: students and engineers preparing for technical coding interviews.
 
-Most DSA practice platforms (LeetCode, Codeforces, etc.) only check if your code passes test cases. They don't simulate the **conversational** part of a real interview — explaining your approach, defending your complexity analysis, and responding to follow-up pressure from an interviewer. That communication skill is often what makes or breaks a real interview, and there's no good way to practice it solo.
+Pain point: practicing alone means no one pushes back on your reasoning, asks follow-up questions, or reviews your actual code the way a real interviewer would.
 
-## 💡 The Solution
+Value provided: an AI interviewer that presents a DSA problem, asks the candidate to explain their approach before coding, pushes with follow-up questions on complexity and edge cases, gives Socratic hints instead of full answers, and reviews submitted code with specific feedback. A scored debrief at the end summarizes the session.
 
-DSA Coach pairs you with an AI interviewer ("Alex") who:
-- Presents a random DSA problem (12 problems across 7 topics: Arrays, Linked Lists, Binary Search, Strings, DP, Graphs, Bit Manipulation)
-- Asks you to explain your approach **before** you start coding — just like a real interview
-- Pushes back with follow-up questions on complexity, edge cases, and optimization
-- Gives Socratic hints (guides you to the answer, never just hands it over) when you ask
-- Reviews your submitted code for correctness, complexity, and quality
-- Scores your full session and gives a personalized debrief at the end
+## Team and Approach
 
----
+Team Name: SoloStack
 
-## 🛠️ Tech Stack
+Team Members:
+- Rohan Kumar Mishra (GitHub: rohanmishra29)
 
-**Frontend**
-- React 19 + Vite
-- Vanilla CSS (custom design system — dark theme, monospace UI)
-- Deployed on **Vercel**
+Approach:
+- Chose this problem because most DSA practice tools test correctness but never the communication skill that actually decides real interviews.
+- Key challenge addressed: making the AI feel like a real interviewer, pushing back and asking why, giving hints instead of answers, rather than a chatbot that just answers questions.
+- The project went through an architecture pivot from a single HTML file calling the Anthropic API directly, to a proper React frontend with a separate Express backend, after discovering that browsers block direct calls to the Anthropic API for security reasons.
 
-**Backend**
-- Node.js + Express
-- Acts as a secure proxy to the Claude API (keeps API keys off the client)
-- Deployed on **Render**
+## Tech Stack
 
-**AI**
-- Built for the **Anthropic Claude API** (`claude-sonnet-4-6`)
-- Currently running in **mock mode** for the live demo (zero API cost) — the backend has a complete, ready-to-activate integration with the real Claude API. Swapping to live AI responses requires only adding an `ANTHROPIC_API_KEY` environment variable on the Render backend — no code changes needed.
+Core Technologies Used:
+- Frontend: React 19, Vite, custom CSS
+- Backend: Node.js, Express
+- Database: None, session state is client-side
+- APIs: Built for the Anthropic Claude API
+- Hosting: Vercel for frontend, Render for backend
 
----
+Additional Technologies Used:
+- AI / ML: Claude API integration for interview conversation, hints, code review, and session scoring. Currently running in a mock response mode for the live demo at zero API cost, with the real Claude integration fully wired and ready to activate by adding an API key.
 
-## 🏗️ Architecture
+## Key Features
 
-```
-React Frontend (Vercel)  --->  Express Backend (Render)  --->  Claude API (Anthropic)
-       <---                          <---
-```
+- Random DSA problem selection across 12 problems and 7 topics
+- Multi-turn AI interview conversation with context retention
+- On-demand Socratic hints, tracked and scored
+- Multi-language code editor supporting C++, Python, Java, and JavaScript
+- AI-powered code review on submission
+- Live session timer and hint counter
+- End-of-session debrief with AI-generated score and personalized feedback
 
-The frontend never talks to Anthropic directly — all requests go through the backend proxy. This is the same pattern production apps use to keep API keys secure (the Anthropic API doesn't allow direct browser calls for this reason — CORS blocks it intentionally).
+## Demo and Deliverables
 
----
+- Demo Video Link: to be added
+- Deployment Link: https://dsa-coach-ebon.vercel.app
+- Pitch Deck: to be added
 
-## ✨ Features
+## Tasks and Bonus Checklist
 
-- 🎲 Random problem selection across difficulty levels and topics
-- 💬 Multi-turn AI conversation with context retention
-- 💡 On-demand Socratic hints (tracked and scored)
-- 📝 Multi-language code editor (C++, Python, Java, JavaScript)
-- 📤 AI-powered code review on submission
-- ⏱️ Live session timer
-- 📊 End-of-session debrief with AI-generated score and feedback
-- 🎨 Custom dark-mode UI designed to feel like a real technical interview tool
+- Mandatory social task: pending
+- Bonus Task 1, badge sharing: pending
+- Bonus Task 2, blog or article: not attempted
 
----
+## How to Run the Project
 
-## 🚀 Running Locally
+Requirements: Node.js v18 or higher, npm
 
-**Backend:**
-```bash
+Backend setup:
 cd dsa-coach-server
 npm install
 node index.js
-# Runs on http://localhost:3001
-```
+Runs on http://localhost:3001
 
-**Frontend:**
-```bash
+Frontend setup:
 cd dsa-coach
 npm install
 npm run dev
-# Runs on http://localhost:5173
-```
+Runs on http://localhost:5173
 
----
+## Future Scope
 
-## 🔗 Links
+- Real code execution via the Judge0 API instead of AI-only review
+- Expanded problem bank covering more topics and difficulty levels
+- Persistent user accounts to track improvement across sessions
+- Activating the live Claude API integration in place of the current mock mode
 
-- **Live App:** https://dsa-coach-ebon.vercel.app
-- **Frontend Repo:** https://github.com/rohanmishra29/dsa-coach
-- **Backend Repo:** https://github.com/rohanmishra29/dsa-coach-server
+## Resources and Credits
 
----
+- Built with the Anthropic Claude API
+- React, Vite, Express
 
-## 🧠 Built For
+## Final Words
 
-**HACKHAZARDS '26** — AI/ML Track
-By Rohan Kumar Mishra ([@rohanmishra29](https://github.com/rohanmishra29))
+Built solo across a tight hackathon window. The biggest lesson was architectural: a feature that works perfectly in a single demo file can completely break once deployed, because of browser security rules around API keys. Solving that properly with a real backend proxy made the project both more secure and more genuinely production-shaped.
+
+## Links
+
+- Live App: https://dsa-coach-ebon.vercel.app
+- Frontend Repo: https://github.com/rohanmishra29/dsa-coach
+- Backend Repo: https://github.com/rohanmishra29/dsa-coach-server
+
+Built for HACKHAZARDS '26 by Rohan Kumar Mishra, GitHub: rohanmishra29
